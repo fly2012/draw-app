@@ -10,16 +10,31 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    
+    @IBOutlet weak var drawView: AnyObject!
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-
-
+    
+    @IBAction func clearView(sender: UIButton) {
+        var theDrawView = drawView as DrawView
+        theDrawView.lines = []
+        theDrawView.setNeedsDisplay()
+    }
+    
+    @IBAction func colorSelected(button: UIButton) {
+        var theDrawView = drawView as DrawView
+        var color : UIColor!
+        if (button.titleLabel?.text == "Red") {
+            color = UIColor.redColor()
+        } else if (button.titleLabel?.text == "Black") {
+            color = UIColor.blackColor()
+        }
+        theDrawView.drawColor = color
+    }
 }
 
